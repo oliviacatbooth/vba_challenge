@@ -1,0 +1,58 @@
+Dim Ticker As String
+Dim Open_Price As Double
+Dim Close_Price As Double
+Dim High_Price As Double
+Dim Low_Price As Double
+Dim Volume As Double
+    Volume = 0
+Dim Last_Row As Long
+    Last_Row = Cells(Rows.Count, 1).End(xlUp).Row
+Dim i As Integer
+    i = 2
+    For i = 2 To Last_Row
+        Do While Cells(i, 1).Value <> Cells(i + 1, 1).Value
+            Ticker = Cells(i, 1).Value
+            Open_Price = Cells(i + 1, 3)
+            Close_Price = Cells(i, 6).Value
+            Volume = Volume + Cells(i, 7).Value
+            i = i + 1
+            yearly_change = (Close_Price - Open_Price)
+            Range("J" & i).Value = Ticker
+            Range("K" & i).Value = yearly_change
+            Range("L" & i).Value = percent_change
+            Range("L" & i).NumberFormat = "0.00%"
+            Range("M" & i).Value = Volume
+                If (Open_Price = 0) Then
+                    percent_change = 0
+                Else
+                    percent_change = yearly_change / Open_Price
+                End If
+
+Last_Row_Sum = Cells(Row.Count, 10).End(xlUp).Row
+    For i = 2 To Last_Row_Sum
+        If Cells(i, 11).Value > 0 Then
+            Cells(i, 11).Interior.ColorIndex = 43
+        Else
+            Cells(i, 11).Interior.ColorIndex = 3
+        End If
+    Next i
+            
+    
+
+
+    
+
+Cell(1, 10).Value = "Ticker"
+Cell(1, 11).Value = "Yearly Change"
+Cell(1, 12).Value = "Percent Change"
+Cell(1, 13).Value = "Total Stock Volume"
+Cell(1, 16).Value = "Ticker"
+Cell(1, 17).Value = "Value"
+
+
+
+
+
+
+
+End Sub
